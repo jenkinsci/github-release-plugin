@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<FindBugsFilter>
+    <Match>
+        <Bug pattern="PA_PUBLIC_PRIMITIVE_ATTRIBUTE"/>
+        <Class name="io.jenkins.plugins.github.release.CreateReleaseStep"/>
+        <Field name="bodyFile"/>
+    </Match>
+    <Match>
+        <Bug pattern="PA_PUBLIC_PRIMITIVE_ATTRIBUTE"/>
+        <Class name="io.jenkins.plugins.github.release.CreateReleaseStep"/>
+        <Field name="bodyText"/>
+    </Match>
+    <Match>
+        <Bug pattern="PA_PUBLIC_PRIMITIVE_ATTRIBUTE"/>
+        <Class name="io.jenkins.plugins.github.release.CreateReleaseStep"/>
+        <Field name="categoryName"/>
+    </Match>
+    <Match>
+        <Bug pattern="PA_PUBLIC_PRIMITIVE_ATTRIBUTE"/>
+        <Class name="io.jenkins.plugins.github.release.CreateReleaseStep"/>
+        <Field name="commitish"/>
+    </Match>
+    <Match>
+        <Bug pattern="PA_PUBLIC_PRIMITIVE_ATTRIBUTE"/>
+        <Class name="io.jenkins.plugins.github.release.CreateReleaseStep"/>
+        <Field name="credentialId"/>
+    </Match>
+    <Match>
+        <Bug pattern="PA_PUBLIC_PRIMITIVE_ATTRIBUTE"/>
+        <Class name="io.jenkins.plugins.github.release.CreateReleaseStep"/>
+        <Field name="draft"/>
+    </Match>
+    <Match>
+        <Bug pattern="PA_PUBLIC_PRIMITIVE_ATTRIBUTE"/>
+        <Class name="io.jenkins.plugins.github.release.CreateReleaseStep"/>
+        <Field name="gitHubServer"/>
+    </Match>
+    <Match>
+        <Bug pattern="PA_PUBLIC_PRIMITIVE_ATTRIBUTE"/>
+        <Class name="io.jenkins.plugins.github.release.CreateReleaseStep"/>
+        <Field name="name"/>
+    </Match>
+    <Match>
+        <Bug pattern="PA_PUBLIC_PRIMITIVE_ATTRIBUTE"/>
+        <Class name="io.jenkins.plugins.github.release.CreateReleaseStep"/>
+        <Field name="prerelease"/>
+    </Match>
+    <Match>
+        <Bug pattern="PA_PUBLIC_PRIMITIVE_ATTRIBUTE"/>
+        <Class name="io.jenkins.plugins.github.release.CreateReleaseStep"/>
+        <Field name="repository"/>
+    </Match>
+    <Match>
+        <Bug pattern="PA_PUBLIC_PRIMITIVE_ATTRIBUTE"/>
+        <Class name="io.jenkins.plugins.github.release.CreateReleaseStep"/>
+        <Field name="tag"/>
+    </Match>
+    <Match>
+        <Bug pattern="PA_PUBLIC_PRIMITIVE_ATTRIBUTE"/>
+        <Class name="io.jenkins.plugins.github.release.ListReleasesStep"/>
+        <Field name="includeDrafts"/>
+    </Match>
+    <Match>
+        <Bug pattern="PA_PUBLIC_PRIMITIVE_ATTRIBUTE"/>
+        <Class name="io.jenkins.plugins.github.release.ListReleasesStep"/>
+        <Field name="sortAscending"/>
+    </Match>
+    <Match>
+        <Bug pattern="PA_PUBLIC_PRIMITIVE_ATTRIBUTE"/>
+        <Class name="io.jenkins.plugins.github.release.ListReleasesStep"/>
+        <Field name="sortBy"/>
+    </Match>
+    <Match>
+        <Bug pattern="PA_PUBLIC_PRIMITIVE_ATTRIBUTE"/>
+        <Class name="io.jenkins.plugins.github.release.ListReleasesStep"/>
+        <Field name="tagNamePattern"/>
+    </Match>
+    <Match>
+        <Bug pattern="PA_PUBLIC_PRIMITIVE_ATTRIBUTE"/>
+        <Class name="io.jenkins.plugins.github.release.UploadAsset"/>
+        <Field name="contentType"/>
+    </Match>
+    <Match>
+        <Bug pattern="PA_PUBLIC_PRIMITIVE_ATTRIBUTE"/>
+        <Class name="io.jenkins.plugins.github.release.UploadAsset"/>
+        <Field name="filePath"/>
+    </Match>
+    <Match>
+        <Bug pattern="PA_PUBLIC_PRIMITIVE_ATTRIBUTE"/>
+        <Class name="io.jenkins.plugins.github.release.UploadReleaseAssetStep"/>
+        <Field name="credentialId"/>
+    </Match>
+    <Match>
+        <Bug pattern="PA_PUBLIC_PRIMITIVE_ATTRIBUTE"/>
+        <Class name="io.jenkins.plugins.github.release.UploadReleaseAssetStep"/>
+        <Field name="githubServer"/>
+    </Match>
+    <Match>
+        <Bug pattern="PA_PUBLIC_PRIMITIVE_ATTRIBUTE"/>
+        <Class name="io.jenkins.plugins.github.release.UploadReleaseAssetStep"/>
+        <Field name="repository"/>
+    </Match>
+    <Match>
+        <Bug pattern="PA_PUBLIC_PRIMITIVE_ATTRIBUTE"/>
+        <Class name="io.jenkins.plugins.github.release.UploadReleaseAssetStep"/>
+        <Field name="tagName"/>
+    </Match>
+    <Match>
+        <Bug pattern="PA_PUBLIC_PRIMITIVE_ATTRIBUTE"/>
+        <Class name="io.jenkins.plugins.github.release.UploadReleaseAssetStep"/>
+        <Field name="uploadAssets"/>
+    </Match>
+</FindBugsFilter>
