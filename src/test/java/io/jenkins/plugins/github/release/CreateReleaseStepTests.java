@@ -36,51 +36,47 @@ import org.junit.Test;
 
 public class CreateReleaseStepTests extends AbstractWireMockTests {
 
+    @Test
+    public void missingCredentialId() throws Exception {
+        // Create a new Pipeline with the given (Scripted Pipeline) definition
+        WorkflowJob job = j.createProject(WorkflowJob.class);
+        String script = "" + "node {" + "  createGitHubRelease(tag: 'v1.2.3', commitish: '00000')" + "}";
 
-  @Test
-  public void missingCredentialId() throws Exception {
-    // Create a new Pipeline with the given (Scripted Pipeline) definition
-    WorkflowJob job = j.createProject(WorkflowJob.class);
-    String script = "" +
-        "node {" +
-        "  createGitHubRelease(tag: 'v1.2.3', commitish: '00000')" +
-        "}";
+        job.setDefinition(new CpsFlowDefinition(script, true));
 
-    job.setDefinition(new CpsFlowDefinition(script, true));
+        WorkflowRun run = job.scheduleBuild2(0).get();
 
-    WorkflowRun run = job.scheduleBuild2(0).get();
+        j.assertBuildStatus(Result.FAILURE, run);
+        j.assertLogContains("credentialId cannot be null", run);
+    }
 
-    j.assertBuildStatus(Result.FAILURE, run);
-    j.assertLogContains("credentialId cannot be null", run);
-  }
+    @Test
+    public void executeBodyText() throws Exception {
+        SystemCredentialsProvider instance = SystemCredentialsProvider.getInstance();
+        instance.getCredentials()
+                .add(new StringCredentialsImpl(CredentialsScope.GLOBAL, "a1234", "desc", Secret.fromString("asdfas")));
+        instance.save();
 
-  @Test
-  public void executeBodyText() throws Exception {
-    SystemCredentialsProvider instance = SystemCredentialsProvider.getInstance();
-    instance.getCredentials().add(new StringCredentialsImpl(CredentialsScope.GLOBAL, "a1234", "desc", Secret.fromString("asdfas")));
-    instance.save();
+        final String script = loadScript("bodyText.groovy");
 
+        // Create a new Pipeline with the given (Scripted Pipeline) definition
+        WorkflowJob job = j.createProject(WorkflowJob.class);
+        job.setDefinition(new CpsFlowDefinition(script, true));
+        j.assertBuildStatusSuccess(job.scheduleBuild2(0).get());
+    }
 
-    final String script = loadScript("bodyText.groovy");
+    @Test
+    public void executeBodyFile() throws Exception {
+        SystemCredentialsProvider instance = SystemCredentialsProvider.getInstance();
+        instance.getCredentials()
+                .add(new StringCredentialsImpl(CredentialsScope.GLOBAL, "a1234", "desc", Secret.fromString("asdfasd")));
+        instance.save();
 
-    // Create a new Pipeline with the given (Scripted Pipeline) definition
-    WorkflowJob job = j.createProject(WorkflowJob.class);
-    job.setDefinition(new CpsFlowDefinition(script, true));
-    j.assertBuildStatusSuccess(job.scheduleBuild2(0).get());
-  }
+        final String script = loadScript("bodyFile.groovy");
 
+        WorkflowJob job = j.createProject(WorkflowJob.class);
 
-  @Test
-  public void executeBodyFile() throws Exception {
-    SystemCredentialsProvider instance = SystemCredentialsProvider.getInstance();
-    instance.getCredentials().add(new StringCredentialsImpl(CredentialsScope.GLOBAL, "a1234", "desc", Secret.fromString("asdfasd")));
-    instance.save();
-
-    final String script = loadScript("bodyFile.groovy");
-
-    WorkflowJob job = j.createProject(WorkflowJob.class);
-
-    job.setDefinition(new CpsFlowDefinition(script, true));
-    j.assertBuildStatusSuccess(job.scheduleBuild2(0).get());
-  }
+        job.setDefinition(new CpsFlowDefinition(script, true));
+        j.assertBuildStatusSuccess(job.scheduleBuild2(0).get());
+    }
 }
