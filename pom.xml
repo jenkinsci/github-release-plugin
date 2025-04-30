@@ -12,11 +12,12 @@
 
     <properties>
         <jenkins.version>2.387.3</jenkins.version>
+        <changelist>999999-SNAPSHOT</changelist>
     </properties>
 
     <groupId>io.jenkins.plugins</groupId>
     <artifactId>github-release</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>${changelist}</version>
     <packaging>hpi</packaging>
     <name>Github Release Plugin</name>
     <url>https://github.com/jenkinsci/github-release-plugin</url>
