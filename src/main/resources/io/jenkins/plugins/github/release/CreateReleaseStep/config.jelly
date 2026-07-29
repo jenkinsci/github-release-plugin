@@ -19,7 +19,7 @@
         <f:textbox/>
     </f:entry>
 
-    <f:entry field="CreateReleaseStepTests.release.io.jenkins.plugins.github.bodyText" title="Text Representation of the release body.">
+    <f:entry field="bodyText" title="Text Representation of the release body.">
         <f:textarea/>
     </f:entry>
     <f:entry field="bodyFile" title="File to read with the release body">
@@ -36,5 +36,8 @@
     </f:entry>
     <f:entry field="categoryName" title="Category Name">
         <f:textbox/>
+    </f:entry>
+    <f:entry field="generateReleaseNotes" title="Generate Release Notes">
+        <f:checkbox/>
     </f:entry>
 </j:jelly>

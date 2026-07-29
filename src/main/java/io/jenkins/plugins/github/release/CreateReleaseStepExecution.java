@@ -12,61 +12,63 @@ import org.kohsuke.github.GHRepository;
 import org.kohsuke.github.GitHub;
 
 public class CreateReleaseStepExecution extends SynchronousStepExecution<Release> {
-  private final CreateReleaseStep step;
+    private final CreateReleaseStep step;
 
-  protected CreateReleaseStepExecution(CreateReleaseStep step, StepContext context) {
-    super(context);
-    this.step = step;
-  }
-
-  @Override
-  protected Release run() throws Exception {
-    ParameterUtils.checkArgument("tag", this.step.tag);
-
-    if (null == this.step.commitish) {
-      throw new IllegalArgumentException(
-          "Could not determine commitish from build. 'commitish' parameter must be set."
-      );
+    protected CreateReleaseStepExecution(CreateReleaseStep step, StepContext context) {
+        super(context);
+        this.step = step;
     }
 
-    TaskListener listener = getContext().get(TaskListener.class);
-    FilePath filePath = getContext().get(FilePath.class);
-    GitHub gitHub = GitHubUtils.loginToGithub(this.step, listener);
-    GHRepository repository = GitHubUtils.getRepository(gitHub, this.step);
+    @Override
+    protected Release run() throws Exception {
+        ParameterUtils.checkArgument("tag", this.step.tag);
 
-    String body;
-    if (null != this.step.bodyText) {
-      body = this.step.bodyText;
-    } else if (null != this.step.bodyFile) {
-      FilePath bodyFile = filePath.child(this.step.bodyFile);
-      listener.getLogger().printf("Reading from %s.%n", bodyFile);
-      body = bodyFile.readToString();
-    } else {
-      body = null;
-    }
+        if (null == this.step.commitish) {
+            throw new IllegalArgumentException(
+                    "Could not determine commitish from build. 'commitish' parameter must be set.");
+        }
 
-    GHReleaseBuilder ghReleaseBuilder = repository.createRelease(this.step.tag)
-        .commitish(this.step.commitish);
+        TaskListener listener = getContext().get(TaskListener.class);
+        FilePath filePath = getContext().get(FilePath.class);
+        GitHub gitHub = GitHubUtils.loginToGithub(this.step, listener);
+        GHRepository repository = GitHubUtils.getRepository(gitHub, this.step);
 
-    if(null != this.step.name) {
-      ghReleaseBuilder = ghReleaseBuilder.name(this.step.name);
-    }
+        String body;
+        if (null != this.step.bodyText) {
+            body = this.step.bodyText;
+        } else if (null != this.step.bodyFile) {
+            FilePath bodyFile = filePath.child(this.step.bodyFile);
+            listener.getLogger().printf("Reading from %s.%n", bodyFile);
+            body = bodyFile.readToString();
+        } else {
+            body = null;
+        }
 
-    if (null != body) {
-      ghReleaseBuilder = ghReleaseBuilder.body(body);
-    }
-    if (null != this.step.categoryName) {
-      ghReleaseBuilder = ghReleaseBuilder.body(this.step.categoryName);
-    }
-    if (null != this.step.draft) {
-      ghReleaseBuilder = ghReleaseBuilder.draft(this.step.draft);
-    }
-    if (null != this.step.prerelease) {
-      ghReleaseBuilder = ghReleaseBuilder.prerelease(this.step.prerelease);
-    }
+        GHReleaseBuilder ghReleaseBuilder =
+                repository.createRelease(this.step.tag).commitish(this.step.commitish);
 
-    GHRelease release = ghReleaseBuilder.create();
+        if (null != this.step.name) {
+            ghReleaseBuilder = ghReleaseBuilder.name(this.step.name);
+        }
 
-    return Release.from(release);
-  }
+        if (null != body) {
+            ghReleaseBuilder = ghReleaseBuilder.body(body);
+        }
+        if (null != this.step.categoryName) {
+            ghReleaseBuilder = ghReleaseBuilder.categoryName(this.step.categoryName);
+        }
+        if (null != this.step.draft) {
+            ghReleaseBuilder = ghReleaseBuilder.draft(this.step.draft);
+        }
+        if (null != this.step.prerelease) {
+            ghReleaseBuilder = ghReleaseBuilder.prerelease(this.step.prerelease);
+        }
+        if (null != this.step.generateReleaseNotes) {
+            ghReleaseBuilder = ghReleaseBuilder.generateReleaseNotes(this.step.generateReleaseNotes);
+        }
+
+        GHRelease release = ghReleaseBuilder.create();
+
+        return Release.from(release);
+    }
 }
