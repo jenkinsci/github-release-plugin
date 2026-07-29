@@ -1,0 +1,33 @@
+{
+  "id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+  "name": "repos_jcustenborder_xjc-kafka-connect-plugin_releases_generate_notes",
+  "request": {
+    "url": "/repos/jcustenborder/xjc-kafka-connect-plugin/releases",
+    "method": "POST",
+    "bodyPatterns": [
+      {
+        "equalToJson": "{\"tag_name\":\"v1.2.3.4\",\"target_commitish\":\"17b5676aaab28e334c0a9befc86e7615a7539c32\",\"draft\":true,\"generate_release_notes\":true}",
+        "ignoreArrayOrder": true,
+        "ignoreExtraElements": true
+      }
+    ]
+  },
+  "response": {
+    "status": 201,
+    "body": "{\"url\":\"https://api.github.com/repos/jcustenborder/xjc-kafka-connect-plugin/releases/125264817\",\"assets_url\":\"https://api.github.com/repos/jcustenborder/xjc-kafka-connect-plugin/releases/125264817/assets\",\"upload_url\":\"https://uploads.github.com/repos/jcustenborder/xjc-kafka-connect-plugin/releases/125264817/assets{?name,label}\",\"html_url\":\"https://github.com/jcustenborder/xjc-kafka-connect-plugin/releases/tag/v1.2.3.4\",\"id\":125264817,\"author\":{\"login\":\"jcustenborder\",\"id\":209792},\"node_id\":\"RE_kwDOBwZ19s4Hd2Ow\",\"tag_name\":\"v1.2.3.4\",\"target_commitish\":\"17b5676aaab28e334c0a9befc86e7615a7539c32\",\"name\":\"v1.2.3.4\",\"draft\":true,\"prerelease\":false,\"created_at\":\"2023-10-16T16:07:33Z\",\"published_at\":null,\"assets\":[],\"tarball_url\":null,\"zipball_url\":null,\"body\":\"## What's Changed\\n\\n* Auto-generated release notes\"}",
+    "headers": {
+      "Server": "GitHub.com",
+      "Date": "Mon, 16 Oct 2023 16:07:33 GMT",
+      "Content-Type": "application/json; charset=utf-8",
+      "Cache-Control": "private, max-age=60, s-maxage=60",
+      "X-OAuth-Scopes": "repo, workflow",
+      "X-Accepted-OAuth-Scopes": "repo",
+      "Location": "https://api.github.com/repos/jcustenborder/xjc-kafka-connect-plugin/releases/125264817",
+      "X-GitHub-Media-Type": "github.v3; format=json",
+      "x-github-api-version-selected": "2022-11-28"
+    }
+  },
+  "uuid": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+  "persistent": true,
+  "priority": 1
+}

@@ -21,6 +21,24 @@ createGitHubRelease(
 )
 ```
 
+#### Create a release with auto-generated release notes
+
+When `generateReleaseNotes` is set to `true`, GitHub automatically generates
+release notes from merged pull requests since the last published release.
+
+```groovy
+createGitHubRelease(
+        credentialId: 'a1234',
+        repository: 'jcustenborder/xjc-kafka-connect-plugin',
+        tag: 'v1.3.0',
+        commitish: '17b5676aaab28e334c0a9befc86e7615a7539c32',
+        generateReleaseNotes: true
+)
+```
+
+If `bodyText` or `bodyFile` is also specified, that text will be prepended to the
+automatically generated notes.
+
 ### listGitHubReleases
 
 Step is used to list the releases in a GitHub repository.

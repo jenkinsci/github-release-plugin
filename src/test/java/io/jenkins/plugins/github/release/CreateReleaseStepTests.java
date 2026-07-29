@@ -83,4 +83,18 @@ public class CreateReleaseStepTests extends AbstractWireMockTests {
     job.setDefinition(new CpsFlowDefinition(script, true));
     j.assertBuildStatusSuccess(job.scheduleBuild2(0).get());
   }
+
+  @Test
+  public void executeGenerateReleaseNotes() throws Exception {
+    SystemCredentialsProvider instance = SystemCredentialsProvider.getInstance();
+    instance.getCredentials().add(new StringCredentialsImpl(CredentialsScope.GLOBAL, "a1234", "desc", Secret.fromString("asdfasd")));
+    instance.save();
+
+    final String script = loadScript("generateReleaseNotes.groovy");
+
+    WorkflowJob job = j.createProject(WorkflowJob.class);
+
+    job.setDefinition(new CpsFlowDefinition(script, true));
+    j.assertBuildStatusSuccess(job.scheduleBuild2(0).get());
+  }
 }

@@ -29,6 +29,7 @@ public class CreateReleaseStep extends Step implements Serializable, GitHubParam
   public String name;
   public Boolean prerelease;
   public String categoryName;
+  public Boolean generateReleaseNotes;
   public String credentialId;
   public String gitHubServer;
   public String repository;
@@ -113,6 +114,11 @@ public class CreateReleaseStep extends Step implements Serializable, GitHubParam
   @DataBoundSetter
   public void setCategoryName(String categoryName) {
     this.categoryName = Util.fixEmptyAndTrim(categoryName);
+  }
+
+  @DataBoundSetter
+  public void setGenerateReleaseNotes(Boolean generateReleaseNotes) {
+    this.generateReleaseNotes = generateReleaseNotes;
   }
 
   @Extension

@@ -37,4 +37,7 @@
     <f:entry field="categoryName" title="Category Name">
         <f:textbox/>
     </f:entry>
+    <f:entry field="generateReleaseNotes" title="Generate Release Notes">
+        <f:checkbox/>
+    </f:entry>
 </j:jelly>
