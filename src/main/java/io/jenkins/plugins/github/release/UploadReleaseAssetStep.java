@@ -21,11 +21,11 @@ import java.util.Set;
 
 public class UploadReleaseAssetStep extends Step implements Serializable, GitHubParameters, RepositoryParameters {
 
-  public String tagName;
-  public List<UploadAsset> uploadAssets;
-  public String credentialId;
-  public String githubServer;
-  public String repository;
+  String tagName;
+  List<UploadAsset> uploadAssets;
+  String credentialId;
+  String githubServer;
+  String repository;
 
   @DataBoundConstructor
   public UploadReleaseAssetStep(String tagName) {

@@ -21,18 +21,18 @@ import java.util.Set;
 
 public class CreateReleaseStep extends Step implements Serializable, GitHubParameters, RepositoryParameters {
 
-  public String tag;
-  public String bodyText;
-  public String bodyFile;
-  public String commitish;
-  public Boolean draft;
-  public String name;
-  public Boolean prerelease;
-  public String categoryName;
-  public Boolean generateReleaseNotes;
-  public String credentialId;
-  public String gitHubServer;
-  public String repository;
+  String tag;
+  String bodyText;
+  String bodyFile;
+  String commitish;
+  Boolean draft;
+  String name;
+  Boolean prerelease;
+  String categoryName;
+  Boolean generateReleaseNotes;
+  String credentialId;
+  String gitHubServer;
+  String repository;
 
   @DataBoundConstructor
   public CreateReleaseStep() {

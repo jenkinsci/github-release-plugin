@@ -12,7 +12,7 @@ import java.io.Serializable;
 public class UploadAsset implements Serializable {
   static final String DEFAULT_CONTENT_TYPE = "application/octet-stream";
 
-  public String contentType = DEFAULT_CONTENT_TYPE;
+  String contentType = DEFAULT_CONTENT_TYPE;
 
   @DataBoundConstructor
   public UploadAsset(String filePath) {
@@ -26,7 +26,7 @@ public class UploadAsset implements Serializable {
     this.contentType = null == c ? DEFAULT_CONTENT_TYPE : c;
   }
 
-  public String filePath;
+  String filePath;
 
   @DataBoundSetter
   public void setFilePath(String filePath) {

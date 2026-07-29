@@ -26,10 +26,10 @@ import java.util.Set;
 
 public class ListReleasesStep extends Step implements Serializable, GitHubParameters, RepositoryParameters {
 
-  public String tagNamePattern;
-  public Boolean includeDrafts;
-  public String sortBy;
-  public Boolean sortAscending = true;
+  String tagNamePattern;
+  Boolean includeDrafts;
+  String sortBy;
+  Boolean sortAscending = true;
   String credentialId;
   String githubServer;
   String repository;
