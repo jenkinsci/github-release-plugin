@@ -26,6 +26,7 @@ package io.jenkins.plugins.github.release;
 
 import com.cloudbees.plugins.credentials.CredentialsScope;
 import com.cloudbees.plugins.credentials.SystemCredentialsProvider;
+import com.cloudbees.plugins.credentials.impl.UsernamePasswordCredentialsImpl;
 import hudson.util.Secret;
 import org.jenkinsci.plugins.plaincredentials.impl.StringCredentialsImpl;
 import org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition;
@@ -94,6 +95,19 @@ public class ListReleaseStepTests extends AbstractWireMockTests {
     job.setDefinition(new CpsFlowDefinition(script, true));
     j.assertBuildStatusSuccess(job.scheduleBuild2(0).get());
 
+  }
+
+  @Test
+  public void listAllReleasesWithGitHubAppCredential() throws Exception {
+    SystemCredentialsProvider instance = SystemCredentialsProvider.getInstance();
+    instance.getCredentials().add(new UsernamePasswordCredentialsImpl(CredentialsScope.GLOBAL, "app-credential", "desc", "12345", "installation-token"));
+    instance.save();
+
+    final String script = loadScript("listAllReleasesGitHubApp.groovy");
+
+    WorkflowJob job = j.createProject(WorkflowJob.class);
+    job.setDefinition(new CpsFlowDefinition(script, true));
+    j.assertBuildStatusSuccess(job.scheduleBuild2(0).get());
   }
 
 }

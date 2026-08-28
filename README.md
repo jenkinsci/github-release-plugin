@@ -2,6 +2,25 @@
 
 The GitHub Release plugin provides pipeline steps to create and query GitHub releases.
 
+## Authentication
+
+### Personal Access Token
+
+Create a Jenkins credential of kind **Secret text** containing your GitHub personal access token, then pass its ID as `credentialId`.
+
+### GitHub App (GitHub Enterprise)
+
+If personal access tokens are disabled on your GitHub Enterprise instance, authenticate as a GitHub App instead:
+
+1. Create a GitHub App on your GHE instance and grant it **Contents: Read & write** and **Metadata: Read-only** permissions.
+2. Install the [GitHub Branch Source plugin](https://plugins.jenkins.io/github-branch-source/).
+3. GitHub generates private keys in PKCS#1 format. The Jenkins credential requires PKCS#8. Convert before uploading:
+   ```bash
+   openssl pkcs8 -topk8 -inform PEM -outform PEM -nocrypt -in downloaded-key.pem -out key-pkcs8.pem
+   ```
+4. In Jenkins, add a credential of kind **GitHub App** (App ID + converted private key PEM).
+5. Pass that credential's ID as `credentialId`. The plugin fetches and refreshes the installation access token automatically.
+
 ## Examples
 
 ### createGitHubRelease
