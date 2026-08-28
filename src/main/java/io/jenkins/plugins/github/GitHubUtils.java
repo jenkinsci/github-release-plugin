@@ -1,6 +1,7 @@
 package io.jenkins.plugins.github;
 
 import com.cloudbees.plugins.credentials.CredentialsProvider;
+import com.cloudbees.plugins.credentials.common.StandardUsernamePasswordCredentials;
 import hudson.model.TaskListener;
 import hudson.security.ACL;
 import jenkins.model.Jenkins;
@@ -22,23 +23,30 @@ public class GitHubUtils {
     List<StringCredentials> credentialList = CredentialsProvider.lookupCredentials(StringCredentials.class, Jenkins.get(), ACL.SYSTEM, Collections.emptyList());
     Optional<StringCredentials> credentials = credentialList.stream().filter(p -> parameters.getCredentialId().equals(p.getId())).findFirst();
 
-    if (credentials.isEmpty()) {
-      throw new IllegalArgumentException(
-          String.format("credentialId '%s' was not found", parameters.getCredentialId())
-      );
+    if (credentials.isPresent()) {
+      return connect(parameters, listener, credentials.get().getSecret().getPlainText());
     }
 
-    GitHub gitHub;
+    List<StandardUsernamePasswordCredentials> appCredentialList = CredentialsProvider.lookupCredentials(StandardUsernamePasswordCredentials.class, Jenkins.get(), ACL.SYSTEM, Collections.emptyList());
+    Optional<StandardUsernamePasswordCredentials> appCredentials = appCredentialList.stream().filter(p -> parameters.getCredentialId().equals(p.getId())).findFirst();
 
+    if (appCredentials.isPresent()) {
+      return connect(parameters, listener, appCredentials.get().getPassword().getPlainText());
+    }
+
+    throw new IllegalArgumentException(
+        String.format("credentialId '%s' was not found", parameters.getCredentialId())
+    );
+  }
+
+  private static GitHub connect(GitHubParameters parameters, TaskListener listener, String token) throws IOException {
     if (null != parameters.getGithubServer()) {
       listener.getLogger().printf("Connecting to %s", parameters.getGithubServer());
       listener.getLogger().println();
-      gitHub = GitHub.connectUsingOAuth(parameters.getGithubServer(), credentials.get().getSecret().getPlainText());
+      return GitHub.connectUsingOAuth(parameters.getGithubServer(), token);
     } else {
-      gitHub = GitHub.connectUsingOAuth(credentials.get().getSecret().getPlainText());
+      return GitHub.connectUsingOAuth(token);
     }
-
-    return gitHub;
   }
 
   public static GHRepository getRepository(GitHub gitHub, RepositoryParameters parameters) throws IOException {

@@ -1,6 +1,7 @@
 package io.jenkins.plugins.github.release;
 
 import com.cloudbees.plugins.credentials.common.StandardListBoxModel;
+import com.cloudbees.plugins.credentials.common.StandardUsernamePasswordCredentials;
 import hudson.model.Item;
 import hudson.security.ACL;
 import hudson.util.ListBoxModel;
@@ -22,7 +23,8 @@ public abstract class AbstractReleaseDescriptor extends StepDescriptor {
 
     return new StandardListBoxModel()
         .includeEmptyValue()
-        .includeAs(ACL.SYSTEM, context, StringCredentials.class);
+        .includeAs(ACL.SYSTEM, context, StringCredentials.class)
+        .includeAs(ACL.SYSTEM, context, StandardUsernamePasswordCredentials.class);
   }
 
 }
