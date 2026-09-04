@@ -16,12 +16,12 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
+import java.net.URI;
 import java.util.stream.Collectors;
 
 public class AbstractWireMockTests {
   protected final String baseFilesClassPath = this.getClass().getName().replace('.', '/');
-  ;
-  protected final String baseRecordPath = "src/test/resources/" + baseFilesClassPath;
+      protected final String baseRecordPath = "src/test/resources/" + baseFilesClassPath;
 
   protected String githubServer() {
 //    return "http://localhost:8080/";
@@ -36,23 +36,32 @@ public class AbstractWireMockTests {
           .extensions(
               new ResponseTransformer() {
                 @Override
-                public Response transform(Request request, Response response, FileSource files,
-                                          Parameters parameters) {
+                public Response transform(final Request request, final Response response, final FileSource files, final Parameters parameters) {
                   try {
-                    if ("application/json"
-                        .equals(response.getHeaders().getContentTypeHeader().mimeTypePart())) {
-                      // Something strange happending here... turning off for now
-//                        return Response.Builder.like(response)
-//                            .but()
-//                            .body(response.getBodyAsString()
-//                                .replace("https://api.github.com/",
-//                                    "http://localhost:" + githubApi.port() + "/")
-//                                .replace("https://raw.githubusercontent.com/",
-//                                    "http://localhost:" + githubRaw.port() + "/")
-//                            )
-//                            .build();
+                    if (response.getHeaders() != null &&
+                            response.getHeaders().getContentTypeHeader() != null &&
+                            "application/json".equals(response.getHeaders().getContentTypeHeader().mimeTypePart())) {
+
+                      // Dynamically extract host and port from incoming request header
+                      final URI requestUri = URI.create(request.getAbsoluteUrl());
+                      final String currentHost = requestUri.getScheme() + "://" + requestUri.getAuthority();
+
+                      final String body = response.getBodyAsString();
+                      if (body != null) {
+                        // Replaces both api.github.com and uploads.github.com URLs with local WireMock host:port
+                        final String modifiedBody = body
+                                .replace("https://api.github.com", currentHost)
+                                .replace("https://raw.githubusercontent.com", currentHost)
+                                .replace("https://uploads.github.com", currentHost);
+
+                        return Response.Builder.like(response)
+                                .but()
+                                .body(modifiedBody)
+                                .build();
+                      }
                     }
-                  } catch (Exception e) {
+                  } catch (final Exception e) {
+                    // Return unmodified response if transform fails
                   }
                   return response;
                 }
@@ -68,20 +77,20 @@ public class AbstractWireMockTests {
   @Rule
   public JenkinsRule j = new JenkinsRule();
 
-  protected String loadScript(String name) throws IOException {
+  protected String loadScript(final String name) throws IOException {
 
-    String path = "/" + baseFilesClassPath + "/" + name;
+    final String path = "/" + baseFilesClassPath + "/" + name;
 
-    String script;
-    try (InputStream inputStream = this.getClass().getResourceAsStream(path)) {
+    final String script;
+    try (final InputStream inputStream = this.getClass().getResourceAsStream(path)) {
       if (null == inputStream) {
         throw new FileNotFoundException(
             path
         );
       }
 
-      try (Reader inputStreamReader = new InputStreamReader(inputStream)) {
-        try (BufferedReader reader = new BufferedReader(inputStreamReader)) {
+      try (final Reader inputStreamReader = new InputStreamReader(inputStream)) {
+        try (final BufferedReader reader = new BufferedReader(inputStreamReader)) {
           script = reader.lines().collect(Collectors.joining("\n"));
         }
       }

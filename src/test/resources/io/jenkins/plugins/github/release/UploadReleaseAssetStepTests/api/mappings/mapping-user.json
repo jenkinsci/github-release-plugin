@@ -1,0 +1,44 @@
+{
+  "id": "5755e42c-7661-4ced-8bbd-c65a8d030888",
+  "name": "user",
+  "request": {
+    "url": "/user",
+    "method": "GET"
+  },
+  "response": {
+    "status": 200,
+    "body": "{\"login\":\"jcustenborder\",\"id\":209792,\"node_id\":\"MDQ6VXNlcjIwOTc5Mg==\",\"avatar_url\":\"https://avatars.githubusercontent.com/u/209792?v=4\",\"gravatar_id\":\"\",\"url\":\"https://api.github.com/users/jcustenborder\",\"html_url\":\"https://github.com/jcustenborder\",\"followers_url\":\"https://api.github.com/users/jcustenborder/followers\",\"following_url\":\"https://api.github.com/users/jcustenborder/following{/other_user}\",\"gists_url\":\"https://api.github.com/users/jcustenborder/gists{/gist_id}\",\"starred_url\":\"https://api.github.com/users/jcustenborder/starred{/owner}{/repo}\",\"subscriptions_url\":\"https://api.github.com/users/jcustenborder/subscriptions\",\"organizations_url\":\"https://api.github.com/users/jcustenborder/orgs\",\"repos_url\":\"https://api.github.com/users/jcustenborder/repos\",\"events_url\":\"https://api.github.com/users/jcustenborder/events{/privacy}\",\"received_events_url\":\"https://api.github.com/users/jcustenborder/received_events\",\"type\":\"User\",\"site_admin\":false,\"name\":\"Jeremy Custenborder\",\"company\":\"@confluentinc\",\"blog\":\"http://confluent.io\",\"location\":\"Austin, TX\",\"email\":\"jeremy@confluent.io\",\"hireable\":null,\"bio\":null,\"twitter_username\":null,\"public_repos\":177,\"public_gists\":4,\"followers\":369,\"following\":4,\"created_at\":\"2010-02-24T09:28:34Z\",\"updated_at\":\"2023-09-29T13:53:54Z\"}",
+    "headers": {
+      "Server": "GitHub.com",
+      "Date": "Tue, 17 Oct 2023 15:46:09 GMT",
+      "Content-Type": "application/json; charset=utf-8",
+      "Cache-Control": "private, max-age=60, s-maxage=60",
+      "Vary": [
+        "Accept, Authorization, Cookie, X-GitHub-OTP",
+        "Accept-Encoding, Accept, X-Requested-With"
+      ],
+      "ETag": "W/\"920d996207b0c9a2da4ce36aebaf03485b5f3216ed3de21456e614a1ce178d0f\"",
+      "Last-Modified": "Fri, 29 Sep 2023 13:53:54 GMT",
+      "X-OAuth-Scopes": "repo, workflow",
+      "X-Accepted-OAuth-Scopes": "",
+      "X-GitHub-Media-Type": "github.v3; format=json",
+      "x-github-api-version-selected": "2022-11-28",
+      "X-RateLimit-Limit": "5000",
+      "X-RateLimit-Remaining": "4987",
+      "X-RateLimit-Reset": "1697559213",
+      "X-RateLimit-Used": "13",
+      "X-RateLimit-Resource": "core",
+      "Access-Control-Expose-Headers": "ETag, Link, Location, Retry-After, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Used, X-RateLimit-Resource, X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval, X-GitHub-Media-Type, X-GitHub-SSO, X-GitHub-Request-Id, Deprecation, Sunset",
+      "Access-Control-Allow-Origin": "*",
+      "Strict-Transport-Security": "max-age=31536000; includeSubdomains; preload",
+      "X-Frame-Options": "deny",
+      "X-Content-Type-Options": "nosniff",
+      "X-XSS-Protection": "0",
+      "Referrer-Policy": "origin-when-cross-origin, strict-origin-when-cross-origin",
+      "Content-Security-Policy": "default-src 'none'",
+      "X-GitHub-Request-Id": "C170:10BB:101E739:20B630B:652EAC40"
+    }
+  },
+  "uuid": "5755e42c-7661-4ced-8bbd-c65a8d030888",
+  "persistent": true
+}
