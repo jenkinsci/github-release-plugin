@@ -30,7 +30,31 @@ public class UploadReleaseAssetStepExecution extends SynchronousStepExecution<Vo
     final TaskListener taskListener = this.getContext().get(TaskListener.class);
     final GitHub gitHub = GitHubUtils.loginToGithub(this.step, taskListener);
     final GHRepository repository = GitHubUtils.getRepository(gitHub, this.step);
-    final GHRelease release = repository.getReleaseByTagName(this.step.tagName);
+    GHRelease release = repository.getReleaseByTagName(this.step.tagName);
+
+    if (release == null) {
+      taskListener.getLogger().printf(
+          "No published release found for tag '%s', searching all releases including drafts...%n", this.step.tagName);
+      int maxAttempts = 3;
+      for (int attempt = 0; attempt < maxAttempts && release == null; attempt++) {
+        if (attempt > 0) {
+          taskListener.getLogger().printf(
+              "Draft release not yet visible, retrying in 3s (attempt %d/%d)...%n", attempt + 1, maxAttempts);
+          Thread.sleep(3000);
+        }
+        for (GHRelease candidate : repository.listReleases()) {
+          if (this.step.tagName.equals(candidate.getTagName())) {
+            release = candidate;
+            break;
+          }
+        }
+      }
+    }
+
+    if (release == null) {
+      throw new IllegalStateException(
+          String.format("No release found with tag '%s'", this.step.tagName));
+    }
 
     if (this.step.uploadAssets == null || this.step.uploadAssets.isEmpty()) {
       throw new IllegalStateException(
