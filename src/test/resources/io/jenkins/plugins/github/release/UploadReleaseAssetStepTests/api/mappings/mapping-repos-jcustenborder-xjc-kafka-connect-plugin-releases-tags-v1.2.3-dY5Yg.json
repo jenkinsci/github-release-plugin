@@ -1,0 +1,31 @@
+{
+  "id" : "bc2690fb-e031-3233-a8fe-0de8022495a3",
+  "request" : {
+    "url" : "/repos/jcustenborder/xjc-kafka-connect-plugin/releases/tags/v1.2.3",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-repos-jcustenborder-xjc-kafka-connect-plugin-releases-tags-v1.2.3-dY5Yg.json",
+    "headers" : {
+      "Server" : "github.com",
+      "Access-Control-Allow-Origin" : "*",
+      "X-Content-Type-Options" : "nosniff",
+      "Date" : "Fri, 04 Sep 2026 09:43:04 GMT",
+      "Referrer-Policy" : "origin-when-cross-origin, strict-origin-when-cross-origin",
+      "X-Frame-Options" : "deny",
+      "Strict-Transport-Security" : "max-age=31536000; includeSubdomains; preload",
+      "Access-Control-Expose-Headers" : "ETag, Link, Location, Retry-After, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Used, X-RateLimit-Resource, X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval, X-GitHub-Media-Type, X-GitHub-SSO, X-GitHub-Request-Id, X-GitHub-Edge-Region, Deprecation, Sunset",
+      "X-GitHub-Media-Type" : "github.v3; format=json",
+      "Content-Security-Policy" : "default-src 'none'",
+      "Vary" : "Accept-Encoding, Accept, X-Requested-With",
+      "x-github-edge-region" : "fra",
+      "X-XSS-Protection" : "0",
+      "X-GitHub-Request-Id" : "F20C:364DB3:7234E6D:6EEE806:6A9A92A8",
+      "Content-Type" : "application/json; charset=utf-8",
+      "Host" : "api.github.com",
+      "Authorization" : ""
+    }
+  },
+  "uuid" : "bc2690fb-e031-3233-a8fe-0de8022495a3"
+}

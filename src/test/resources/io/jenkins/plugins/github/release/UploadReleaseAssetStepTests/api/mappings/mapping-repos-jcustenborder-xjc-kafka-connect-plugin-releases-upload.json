@@ -1,0 +1,31 @@
+{
+  "id" : "839a7bc9-818f-44bb-942b-deba1e90b50b",
+  "request" : {
+    "url" : "/repos/jcustenborder/xjc-kafka-connect-plugin/releases/125020531/assets?name=app.jar",
+    "method" : "POST"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-repos-jcustenborder-xjc-kafka-connect-plugin-releases-upload.json",
+    "headers" : {
+      "Server" : "github.com",
+      "Access-Control-Allow-Origin" : "*",
+      "X-Content-Type-Options" : "nosniff",
+      "Date" : "Fri, 04 Sep 2026 09:48:51 GMT",
+      "Referrer-Policy" : "origin-when-cross-origin, strict-origin-when-cross-origin",
+      "X-Frame-Options" : "deny",
+      "Strict-Transport-Security" : "max-age=31536000; includeSubdomains; preload",
+      "Access-Control-Expose-Headers" : "ETag, Link, Location, Retry-After, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Used, X-RateLimit-Resource, X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval, X-GitHub-Media-Type, X-GitHub-SSO, X-GitHub-Request-Id, X-GitHub-Edge-Region, Deprecation, Sunset",
+      "X-GitHub-Media-Type" : "github.v3; format=json",
+      "Content-Security-Policy" : "default-src 'none'",
+      "Vary" : "Accept-Encoding, Accept, X-Requested-With",
+      "x-github-edge-region" : "fra",
+      "X-XSS-Protection" : "0",
+      "X-GitHub-Request-Id" : "CF94:13A987:7686D6F:7328A4F:6A9A9403",
+      "Content-Type" : "application/json; charset=utf-8",
+      "Host" : "api.github.com",
+      "Authorization" : ""
+    }
+  },
+  "uuid" : "839a7bc9-818f-44bb-942b-deba1e90b50b"
+}

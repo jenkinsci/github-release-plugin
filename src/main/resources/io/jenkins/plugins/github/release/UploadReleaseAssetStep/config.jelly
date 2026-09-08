@@ -13,7 +13,10 @@
     <f:entry field="tagName" title="Release Tag">
         <f:textbox/>
     </f:entry>
-    <f:repeatable var="uploadAssetList" name="uploadAssets" items="${instance.uploadAssets}" minimum="1">
+    <f:entry field="overwrite" title="Overwrite">
+        <f:checkbox/>
+    </f:entry>
+    <f:repeatable header="Asset to upload" var="uploadAssetList" name="uploadAssets" items="${instance.uploadAssets}" minimum="1">
         <fieldset>
             <f:entry title="File Path" description="Path to a file in the workspace that will be uploaded and attached to the GitHub release." field="filePath">
                 <f:textbox value="${uploadAssetList.filePath}" default="" />
