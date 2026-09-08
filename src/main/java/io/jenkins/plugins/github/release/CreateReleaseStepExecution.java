@@ -48,9 +48,9 @@ public class CreateReleaseStepExecution extends SynchronousStepExecution<Release
     GHReleaseBuilder ghReleaseBuilder = repository.createRelease(this.step.tag)
         .commitish(this.step.commitish);
 
-    if(null != this.step.name) {
-      ghReleaseBuilder = ghReleaseBuilder.name(this.step.name);
-    }
+    ghReleaseBuilder = ghReleaseBuilder.name(
+        null != this.step.name ? this.step.name : this.step.tag
+    );
 
     if (null != body) {
       ghReleaseBuilder = ghReleaseBuilder.body(body);
