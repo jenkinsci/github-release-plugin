@@ -56,13 +56,16 @@ public class CreateReleaseStepExecution extends SynchronousStepExecution<Release
       ghReleaseBuilder = ghReleaseBuilder.body(body);
     }
     if (null != this.step.categoryName) {
-      ghReleaseBuilder = ghReleaseBuilder.body(this.step.categoryName);
+      ghReleaseBuilder = ghReleaseBuilder.categoryName(this.step.categoryName);
     }
     if (null != this.step.draft) {
       ghReleaseBuilder = ghReleaseBuilder.draft(this.step.draft);
     }
     if (null != this.step.prerelease) {
       ghReleaseBuilder = ghReleaseBuilder.prerelease(this.step.prerelease);
+    }
+    if (null != this.step.generateReleaseNotes) {
+      ghReleaseBuilder = ghReleaseBuilder.generateReleaseNotes(this.step.generateReleaseNotes);
     }
 
     GHRelease release = ghReleaseBuilder.create();
